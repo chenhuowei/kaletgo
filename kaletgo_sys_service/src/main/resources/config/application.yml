@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/ibase4j
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+    minIdle: 1
+    maxActive: 2
+    initialSize: 1
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'ZTM' FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+
+
+mybatis:
+  mapperLocations: classpath*:/mapping/*Mapper.xml
+  typeAliasesPackage: com.fireway.kaletgo.model
+
+#classpath:config/logback-spring.xml
+
+#Dubbo
+#ZooKeeper
+dubbo:
+    registry:
+        address: 192.168.1.37:2181

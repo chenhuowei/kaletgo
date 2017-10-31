@@ -1,0 +1,23 @@
+server:
+  port: 8088
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  aop:
+    auto: true
+  resources:
+    static-locations: classpath:/static/
+freemarker:
+    template-loader-path: classpath:/templates/
+    #suffix: .htm
+    request-context-attribute: request
+    cache: false
+#日志
+logging:
+  config: classpath:config/logback-spring.xml
+
+#Dubbo
+#ZooKeeper
+dubbo:
+    registry:
+        address: 192.168.1.37:2181

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fireway.kaletgo.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.fireway.kaletgo.model.User" >
+    <id column="id_" property="id" jdbcType="BIGINT" />
+    <result column="account_" property="account" jdbcType="VARCHAR" />
+    <result column="password_" property="password" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="name_pinyin" property="namePinyin" jdbcType="VARCHAR" />
+    <result column="sex_" property="sex" jdbcType="INTEGER" />
+    <result column="avatar_" property="avatar" jdbcType="VARCHAR" />
+    <result column="phone_" property="phone" jdbcType="VARCHAR" />
+    <result column="email_" property="email" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="wei_xin" property="weiXin" jdbcType="VARCHAR" />
+    <result column="wei_bo" property="weiBo" jdbcType="VARCHAR" />
+    <result column="qq_" property="qq" jdbcType="VARCHAR" />
+    <result column="birth_day" property="birthDay" jdbcType="DATE" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
+    <result column="position_" property="position" jdbcType="VARCHAR" />
+    <result column="address_" property="address" jdbcType="VARCHAR" />
+    <result column="staff_no" property="staffNo" jdbcType="VARCHAR" />
+    <result column="enable_" property="enable" jdbcType="BIT" />
+    <result column="remark_" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="status_" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_, account_, password_, user_type, user_name, name_pinyin, sex_, avatar_, phone_, 
+    email_, id_card, wei_xin, wei_bo, qq_, birth_day, dept_id, position_, address_, staff_no, 
+    enable_, remark_, create_time, create_by, update_time, update_by, status_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id_ = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user
+    where id_ = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fireway.kaletgo.model.User" >
+    insert into sys_user (id_, account_, password_, 
+      user_type, user_name, name_pinyin, 
+      sex_, avatar_, phone_, 
+      email_, id_card, wei_xin, 
+      wei_bo, qq_, birth_day, dept_id, 
+      position_, address_, staff_no, 
+      enable_, remark_, create_time, 
+      create_by, update_time, update_by, 
+      status_)
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{namePinyin,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{weiXin,jdbcType=VARCHAR}, 
+      #{weiBo,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{birthDay,jdbcType=DATE}, #{deptId,jdbcType=BIGINT}, 
+      #{position,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{staffNo,jdbcType=VARCHAR}, 
+      #{enable,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fireway.kaletgo.model.User" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id_,
+      </if>
+      <if test="account != null" >
+        account_,
+      </if>
+      <if test="password != null" >
+        password_,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="namePinyin != null" >
+        name_pinyin,
+      </if>
+      <if test="sex != null" >
+        sex_,
+      </if>
+      <if test="avatar != null" >
+        avatar_,
+      </if>
+      <if test="phone != null" >
+        phone_,
+      </if>
+      <if test="email != null" >
+        email_,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="weiXin != null" >
+        wei_xin,
+      </if>
+      <if test="weiBo != null" >
+        wei_bo,
+      </if>
+      <if test="qq != null" >
+        qq_,
+      </if>
+      <if test="birthDay != null" >
+        birth_day,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="position != null" >
+        position_,
+      </if>
+      <if test="address != null" >
+        address_,
+      </if>
+      <if test="staffNo != null" >
+        staff_no,
+      </if>
+      <if test="enable != null" >
+        enable_,
+      </if>
+      <if test="remark != null" >
+        remark_,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="status != null" >
+        status_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="namePinyin != null" >
+        #{namePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="weiXin != null" >
+        #{weiXin,jdbcType=VARCHAR},
+      </if>
+      <if test="weiBo != null" >
+        #{weiBo,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDay != null" >
+        #{birthDay,jdbcType=DATE},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNo != null" >
+        #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fireway.kaletgo.model.User" >
+    update sys_user
+    <set >
+      <if test="account != null" >
+        account_ = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password_ = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="namePinyin != null" >
+        name_pinyin = #{namePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex_ = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        avatar_ = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone_ = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email_ = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="weiXin != null" >
+        wei_xin = #{weiXin,jdbcType=VARCHAR},
+      </if>
+      <if test="weiBo != null" >
+        wei_bo = #{weiBo,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq_ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDay != null" >
+        birth_day = #{birthDay,jdbcType=DATE},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="position != null" >
+        position_ = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address_ = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNo != null" >
+        staff_no = #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        enable_ = #{enable,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        remark_ = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status_ = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fireway.kaletgo.model.User" >
+    update sys_user
+    set account_ = #{account,jdbcType=VARCHAR},
+      password_ = #{password,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      name_pinyin = #{namePinyin,jdbcType=VARCHAR},
+      sex_ = #{sex,jdbcType=INTEGER},
+      avatar_ = #{avatar,jdbcType=VARCHAR},
+      phone_ = #{phone,jdbcType=VARCHAR},
+      email_ = #{email,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      wei_xin = #{weiXin,jdbcType=VARCHAR},
+      wei_bo = #{weiBo,jdbcType=VARCHAR},
+      qq_ = #{qq,jdbcType=VARCHAR},
+      birth_day = #{birthDay,jdbcType=DATE},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      position_ = #{position,jdbcType=VARCHAR},
+      address_ = #{address,jdbcType=VARCHAR},
+      staff_no = #{staffNo,jdbcType=VARCHAR},
+      enable_ = #{enable,jdbcType=BIT},
+      remark_ = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      status_ = #{status,jdbcType=TINYINT}
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
