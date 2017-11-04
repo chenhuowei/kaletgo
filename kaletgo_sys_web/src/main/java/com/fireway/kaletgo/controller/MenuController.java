@@ -1,11 +1,15 @@
 package com.fireway.kaletgo.controller;
 
 import com.fireway.kaletgo.facade.MenuFacade;
+import com.fireway.kaletgo.model.Menu;
 import io.swagger.annotations.Api;
-import org.springframework.stereotype.Controller;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author: chenhuowei
@@ -14,7 +18,7 @@ import javax.annotation.Resource;
  * @description:
  * @modified By:
  */
-@Controller
+@RestController
 @RequestMapping("/sys/menu")
 @Api("前端菜单控制器")
 public class MenuController {
@@ -23,5 +27,13 @@ public class MenuController {
     private MenuFacade menuFacade;
 
 
+    @RequestMapping(value="/navbar.html")
+    @ResponseBody
+    @ApiOperation(value = "请求导航菜单json数据")
+    public List<Menu> selectMenuList(){
+
+        return menuFacade.selectMenuList();
+
+    }
 
 }

@@ -113,7 +113,18 @@ public class MenuServiceImpl implements MenuFacade{
     
     */
     @Override
-    public List<Menu> select2Page() {
-        return menuMapper.select2Page();
+    public List<Menu> selectByPage() {
+        return menuMapper.selectByPage();
+    }
+
+    /**
+     * get data list from database to show
+     *
+     * @return boolean
+     * @author chenhuowei
+     */
+    @Override
+    public List<Menu> selectMenuList() {
+        return menuMapper.selectMenuList();
     }
 }

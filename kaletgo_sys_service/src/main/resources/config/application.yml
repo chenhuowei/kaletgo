@@ -26,4 +26,4 @@ mybatis:
 #ZooKeeper
 dubbo:
     registry:
-        address: 192.168.1.37:2181
+        address: 120.78.172.165:2181

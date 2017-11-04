@@ -1,247 +1,261 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fireway.kaletgo.dao.MenuMapper" >
-  <resultMap id="BaseResultMap" type="com.fireway.kaletgo.model.Menu" >
-    <id column="id_" property="id" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="SMALLINT" />
-    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
-    <result column="iconcls_" property="iconcls" jdbcType="VARCHAR" />
-    <result column="url_" property="url" jdbcType="VARCHAR" />
-    <result column="expand_" property="expand" jdbcType="BIT" />
-    <result column="sort_no" property="sortNo" jdbcType="INTEGER" />
-    <result column="is_show" property="isShow" jdbcType="BIT" />
-    <result column="permission_" property="permission" jdbcType="VARCHAR" />
-    <result column="remark_" property="remark" jdbcType="VARCHAR" />
-    <result column="enable_" property="enable" jdbcType="BIT" />
-    <result column="create_by" property="createBy" jdbcType="BIGINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="status_" property="status" jdbcType="TINYINT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fireway.kaletgo.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.fireway.kaletgo.model.Menu">
+    <id column="id_" jdbcType="BIGINT" property="id" />
+    <result column="title_" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="SMALLINT" property="type" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="icon_" jdbcType="VARCHAR" property="icon" />
+    <result column="url_" jdbcType="VARCHAR" property="url" />
+    <result column="expand_" jdbcType="BIT" property="expand" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="is_show" jdbcType="BIT" property="isShow" />
+    <result column="permission_" jdbcType="VARCHAR" property="permission" />
+    <result column="remark_" jdbcType="VARCHAR" property="remark" />
+    <result column="enable_" jdbcType="BIT" property="enable" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status_" jdbcType="TINYINT" property="status" />
+    <result column="spread_" jdbcType="BIT" property="spread" />
   </resultMap>
-
-  <sql id="Base_Column_List" >
-    id_, name, type, parent_id, iconcls_, url_, expand_, sort_no, is_show, permission_, 
-    remark_, enable_, create_by, create_time, update_by, update_time, status_
+  <sql id="Base_Column_List">
+    id_, title_, type, parent_id, icon_, url_, expand_, sort_no, is_show, permission_,
+    remark_, enable_, create_by, create_time, update_by, update_time, status_, spread_
   </sql>
-  <sql id="Base_Column_List2" >
-    id_, name, type, parent_id, iconcls_, url_, expand_, sort_no, is_show, permission_,
-    remark_, enable_, status_
+  <sql id="Base_Column_List_2">
+    id_, title_, type, parent_id, icon_, url_, expand_, sort_no, spread_
   </sql>
 
-  <select id="select2Page" >
+  <select id="selectByPage" >
     select
-    <include refid="Base_Column_List2" />
+    <include refid="Base_Column_List" />
+    from sys_menu
+  </select>
+  <select id="selectMenuList"  >
+    select
+    <include refid="Base_Column_List_2" />
     from sys_menu
   </select>
 
-
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from sys_menu
     where id_ = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_menu
     where id_ = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.fireway.kaletgo.model.Menu" >
-    insert into sys_menu (id_, name, type, 
-      parent_id, iconcls_, url_, 
-      expand_, sort_no, is_show, permission_, 
-      remark_, enable_, create_by, 
-      create_time, update_by, update_time, 
-      status_)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT}, 
-      #{parentId,jdbcType=BIGINT}, #{iconcls,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{expand,jdbcType=BIT}, #{sortNo,jdbcType=INTEGER}, #{isShow,jdbcType=BIT}, #{permission,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{createBy,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.fireway.kaletgo.model.Menu">
+    insert into sys_menu (id_, title_, type,
+    parent_id, icon_, url_,
+    expand_, sort_no, is_show, permission_,
+    remark_, enable_, create_by,
+    create_time, update_by, update_time,
+    status_, spread_)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT},
+    #{parentId,jdbcType=BIGINT}, #{icon,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+    #{expand,jdbcType=BIT}, #{sortNo,jdbcType=INTEGER}, #{isShow,jdbcType=BIT}, #{permission,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{createBy,jdbcType=BIGINT},
+    #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP},
+    #{status,jdbcType=TINYINT}, #{spread,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.fireway.kaletgo.model.Menu" >
+  <insert id="insertSelective" parameterType="com.fireway.kaletgo.model.Menu">
     insert into sys_menu
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id_,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="title != null">
+        title_,
       </if>
-      <if test="type != null" >
+      <if test="type != null">
         type,
       </if>
-      <if test="parentId != null" >
+      <if test="parentId != null">
         parent_id,
       </if>
-      <if test="iconcls != null" >
-        iconcls_,
+      <if test="icon != null">
+        icon_,
       </if>
-      <if test="url != null" >
+      <if test="url != null">
         url_,
       </if>
-      <if test="expand != null" >
+      <if test="expand != null">
         expand_,
       </if>
-      <if test="sortNo != null" >
+      <if test="sortNo != null">
         sort_no,
       </if>
-      <if test="isShow != null" >
+      <if test="isShow != null">
         is_show,
       </if>
-      <if test="permission != null" >
+      <if test="permission != null">
         permission_,
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark_,
       </if>
-      <if test="enable != null" >
+      <if test="enable != null">
         enable_,
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         create_by,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateBy != null" >
+      <if test="updateBy != null">
         update_by,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status_,
       </if>
+      <if test="spread != null">
+        spread_,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
+      <if test="type != null">
         #{type,jdbcType=SMALLINT},
       </if>
-      <if test="parentId != null" >
+      <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="iconcls != null" >
-        #{iconcls,jdbcType=VARCHAR},
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
+      <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="expand != null" >
+      <if test="expand != null">
         #{expand,jdbcType=BIT},
       </if>
-      <if test="sortNo != null" >
+      <if test="sortNo != null">
         #{sortNo,jdbcType=INTEGER},
       </if>
-      <if test="isShow != null" >
+      <if test="isShow != null">
         #{isShow,jdbcType=BIT},
       </if>
-      <if test="permission != null" >
+      <if test="permission != null">
         #{permission,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="enable != null" >
+      <if test="enable != null">
         #{enable,jdbcType=BIT},
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         #{createBy,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateBy != null" >
+      <if test="updateBy != null">
         #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=TINYINT},
+      </if>
+      <if test="spread != null">
+        #{spread,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fireway.kaletgo.model.Menu" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fireway.kaletgo.model.Menu">
     update sys_menu
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+    <set>
+      <if test="title != null">
+        title_ = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="type != null" >
+      <if test="type != null">
         type = #{type,jdbcType=SMALLINT},
       </if>
-      <if test="parentId != null" >
+      <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="iconcls != null" >
-        iconcls_ = #{iconcls,jdbcType=VARCHAR},
+      <if test="icon != null">
+        icon_ = #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
+      <if test="url != null">
         url_ = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="expand != null" >
+      <if test="expand != null">
         expand_ = #{expand,jdbcType=BIT},
       </if>
-      <if test="sortNo != null" >
+      <if test="sortNo != null">
         sort_no = #{sortNo,jdbcType=INTEGER},
       </if>
-      <if test="isShow != null" >
+      <if test="isShow != null">
         is_show = #{isShow,jdbcType=BIT},
       </if>
-      <if test="permission != null" >
+      <if test="permission != null">
         permission_ = #{permission,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         remark_ = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="enable != null" >
+      <if test="enable != null">
         enable_ = #{enable,jdbcType=BIT},
       </if>
-      <if test="createBy != null" >
+      <if test="createBy != null">
         create_by = #{createBy,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateBy != null" >
+      <if test="updateBy != null">
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status_ = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="spread != null">
+        spread_ = #{spread,jdbcType=BIT},
       </if>
     </set>
     where id_ = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fireway.kaletgo.model.Menu" >
+  <update id="updateByPrimaryKey" parameterType="com.fireway.kaletgo.model.Menu">
     update sys_menu
-    set name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=SMALLINT},
-      parent_id = #{parentId,jdbcType=BIGINT},
-      iconcls_ = #{iconcls,jdbcType=VARCHAR},
-      url_ = #{url,jdbcType=VARCHAR},
-      expand_ = #{expand,jdbcType=BIT},
-      sort_no = #{sortNo,jdbcType=INTEGER},
-      is_show = #{isShow,jdbcType=BIT},
-      permission_ = #{permission,jdbcType=VARCHAR},
-      remark_ = #{remark,jdbcType=VARCHAR},
-      enable_ = #{enable,jdbcType=BIT},
-      create_by = #{createBy,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=BIGINT},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      status_ = #{status,jdbcType=TINYINT}
+    set title_ = #{title,jdbcType=VARCHAR},
+    type = #{type,jdbcType=SMALLINT},
+    parent_id = #{parentId,jdbcType=BIGINT},
+    icon_ = #{icon,jdbcType=VARCHAR},
+    url_ = #{url,jdbcType=VARCHAR},
+    expand_ = #{expand,jdbcType=BIT},
+    sort_no = #{sortNo,jdbcType=INTEGER},
+    is_show = #{isShow,jdbcType=BIT},
+    permission_ = #{permission,jdbcType=VARCHAR},
+    remark_ = #{remark,jdbcType=VARCHAR},
+    enable_ = #{enable,jdbcType=BIT},
+    create_by = #{createBy,jdbcType=BIGINT},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_by = #{updateBy,jdbcType=BIGINT},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    status_ = #{status,jdbcType=TINYINT},
+    spread_ = #{spread,jdbcType=BIT}
     where id_ = #{id,jdbcType=BIGINT}
   </update>
+
 </mapper>

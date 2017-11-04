@@ -1,7 +1,9 @@
 package com.fireway.kaletgo.model;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Menu implements Serializable{
     private Long id;
@@ -38,6 +40,17 @@ public class Menu implements Serializable{
 
     private Byte status;
 
+
+    private List<Menu> children;
+
+    public void setChildren(List<Menu> children){
+        this.children = children;
+    }
+
+    @Transient
+    public List<Menu> getChildren(){
+        return children;
+    }
     public Long getId() {
         return id;
     }

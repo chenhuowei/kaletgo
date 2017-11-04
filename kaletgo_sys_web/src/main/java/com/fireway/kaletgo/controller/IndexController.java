@@ -22,7 +22,6 @@ public class IndexController {
     public ModelAndView index(){
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject("menus",menuFacade.select2Page());
         mv.setViewName("index");
         return mv;
     }

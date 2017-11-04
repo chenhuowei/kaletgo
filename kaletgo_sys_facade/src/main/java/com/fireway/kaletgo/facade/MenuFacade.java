@@ -67,7 +67,14 @@ public interface MenuFacade{
      @return boolean
      */
     public List<Menu> list();
-    List<Menu>  select2Page();
+    public List<Menu>  selectByPage();
+    /**
+     * get data list from database to show
+     @author chenhuowei
+     @param
+     @return boolean
+     */
+    public List<Menu>  selectMenuList();
 
 
 }

@@ -64,8 +64,8 @@ layui.define(['element', 'nprogress', 'form', 'table', 'loader', 'tab', 'navbar'
 
                 navbar.set({
                     remote: {
-                        elem: '#navs',
-                        url: 'datas/navbar1.json'
+                        elem: '#naves',
+                        url: 'sys/menu/navbar.html'
                     }
                 }).render(function(data) {
                     tab.tabAdd(data);

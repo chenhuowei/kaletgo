@@ -23,6 +23,8 @@ public interface MenuMapper {
 
     int updateByPrimaryKey(Menu record);
 
-    List<Menu>  select2Page();
+    List<Menu>  selectByPage();
+
+    List<Menu> selectMenuList();
 
 }

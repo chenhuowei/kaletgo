@@ -21,7 +21,7 @@
                 <li class="layui-nav-item"><a href="javascript:;">商品管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;" id="pay"><i class="fa fa-gratipay" aria-hidden="true"></i> 捐赠我</a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">其它系统</a>
+                    <a href="http://120.78.172.165:8080/dubbo-admin" target="_blank">Dubbo控制台</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">邮件管理</a></dd>
                         <dd><a href="javascript:;">消息管理</a></dd>
@@ -47,7 +47,7 @@
             <div class="layui-side-scroll">
                 <div class="kit-side-fold"><i class="fa fa-navicon" aria-hidden="true"></i></div>
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul id="navs" class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
+                <ul id="naves" class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
 
                 </ul>
             </div>
@@ -74,8 +74,8 @@
             base: 'build/js/'
         }).use(['app', 'message','navbar'], function() {
             var app = layui.app,
-                $ = layui.jquery,
-                    navbar=layui.navbar,
+                $ = layui.jquery;
+
             //主入口
             app.set({
                 type: 'page'

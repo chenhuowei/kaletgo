@@ -6,14 +6,14 @@
            http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="web-service"  />
+    <dubbo:application name="kaletgo-web-service"  />
 
     <!-- 注册中心服务地址 -->
-    <dubbo:registry id="zookeeper" protocol="zookeeper" address="192.168.1.37:2181" />
+    <dubbo:registry id="zookeeper" protocol="zookeeper" address="120.78.172.165:2181" />
 
     <dubbo:consumer timeout="5000" />
 
     <!-- 使用暴露的服务接口 -->
     <dubbo:reference id="userFacade" interface="com.fireway.kaletgo.facade.UserFacade"></dubbo:reference>
-    <dubbo:reference id="menuFacade" interface="com.fireway.kaletgo.facade.MenuFacade"></dubbo:reference>
+    <dubbo:reference id="menuFacade" interface="com.fireway.kaletgo.facade.MenuFacade" version="0.2"></dubbo:reference>
 </beans>
