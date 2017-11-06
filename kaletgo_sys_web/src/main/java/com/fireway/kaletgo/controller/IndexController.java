@@ -26,5 +26,12 @@ public class IndexController {
         return mv;
     }
 
+    @RequestMapping("main.html")
+    public ModelAndView main(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("main");
+        mv.addObject("test","test");
+        return mv;
+    }
 
 }

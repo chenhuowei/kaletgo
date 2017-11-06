@@ -36,9 +36,11 @@ public class MenuController {
         List<Menu> list = menuFacade.selectMenuList();
         List<Menu> list2 = new ArrayList<Menu>();
         for(Menu menu : list){
+
             if (null != menu.getParentId() && menu.getParentId() !=0){
                 for (Menu m : list){
-                    if (m.getId() == menu.getParentId()){
+
+                    if (m.getId() .equals( menu.getParentId() )){
                         m.getChildren().add(menu);
                     }
                 }
@@ -47,10 +49,6 @@ public class MenuController {
             }
 
         }
-
-
-
-
 
         return list2;
 

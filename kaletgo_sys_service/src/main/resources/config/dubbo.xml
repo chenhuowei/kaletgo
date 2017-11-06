@@ -9,7 +9,7 @@
     <dubbo:application name="kaletgo-sys-service"  />
 
     <!-- 注册中心服务地址 -->
-    <dubbo:registry protocol="zookeeper" address="120.78.172.165:2181" />
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
 
     <!-- 用dubbo协议在30001 -->
     <dubbo:protocol name="dubbo" port="20880" dispather="all" threadpool="cached" threads="5000"/>

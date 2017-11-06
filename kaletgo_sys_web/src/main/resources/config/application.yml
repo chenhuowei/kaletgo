@@ -7,11 +7,12 @@ spring:
     auto: true
   resources:
     static-locations: classpath:/static/
-freemarker:
-    template-loader-path: classpath:/templates/
-    #suffix: .htm
-    request-context-attribute: request
-    cache: false
+  freemarker:
+      template-loader-path: classpath:/templates/
+      suffix: .html
+      request-context-attribute: request
+      charset: UTF-8
+      cache: false
 #日志
 logging:
   config: classpath:config/logback-spring.xml
@@ -20,4 +21,4 @@ logging:
 #ZooKeeper
 dubbo:
     registry:
-        address: 192.168.1.37:2181
+        address: 120.78.172.165:2181

@@ -1,6 +1,5 @@
 package com.fireway.kaletgo.model;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +44,6 @@ public class Menu implements Serializable{
 
     private List<Menu> children = new ArrayList<Menu>();
 
-    @Transient
     public List<Menu> getChildren() {
         return children;
     }
