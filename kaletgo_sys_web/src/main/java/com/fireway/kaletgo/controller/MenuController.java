@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +33,26 @@ public class MenuController {
     @ApiOperation(value = "请求导航菜单json数据")
     public List<Menu> selectMenuList(){
 
-        return menuFacade.selectMenuList();
+        List<Menu> list = menuFacade.selectMenuList();
+        List<Menu> list2 = new ArrayList<Menu>();
+        for(Menu menu : list){
+            if (null != menu.getParentId() && menu.getParentId() !=0){
+                for (Menu m : list){
+                    if (m.getId() == menu.getParentId()){
+                        m.getChildren().add(menu);
+                    }
+                }
+            }else {
+                list2.add(menu);
+            }
+
+        }
+
+
+
+
+
+        return list2;
 
     }
 

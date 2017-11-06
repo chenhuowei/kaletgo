@@ -2,19 +2,20 @@ package com.fireway.kaletgo.model;
 
 import java.beans.Transient;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Menu implements Serializable{
     private Long id;
 
-    private String name;
+    private String title;
 
     private Short type;
 
     private Long parentId;
 
-    private String iconcls;
+    private String icon;
 
     private String url;
 
@@ -40,17 +41,19 @@ public class Menu implements Serializable{
 
     private Byte status;
 
+    private Boolean spread;
 
-    private List<Menu> children;
+    private List<Menu> children = new ArrayList<Menu>();
 
-    public void setChildren(List<Menu> children){
+    @Transient
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
         this.children = children;
     }
 
-    @Transient
-    public List<Menu> getChildren(){
-        return children;
-    }
     public Long getId() {
         return id;
     }
@@ -59,12 +62,12 @@ public class Menu implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public Short getType() {
@@ -83,12 +86,12 @@ public class Menu implements Serializable{
         this.parentId = parentId;
     }
 
-    public String getIconcls() {
-        return iconcls;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setIconcls(String iconcls) {
-        this.iconcls = iconcls == null ? null : iconcls.trim();
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
     }
 
     public String getUrl() {
@@ -185,5 +188,13 @@ public class Menu implements Serializable{
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    public Boolean getSpread() {
+        return spread;
+    }
+
+    public void setSpread(Boolean spread) {
+        this.spread = spread;
     }
 }

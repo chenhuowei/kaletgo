@@ -19,6 +19,7 @@
         <zookeeper.version>3.4.10</zookeeper.version>
         <zkclient.version>0.1</zkclient.version>
         <swagger.version>2.7.0</swagger.version>
+        <fastjson.version>1.2.40</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -124,6 +125,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
                 <version>${spring.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
 

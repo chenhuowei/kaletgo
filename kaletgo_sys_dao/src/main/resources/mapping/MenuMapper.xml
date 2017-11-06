@@ -34,7 +34,7 @@
     <include refid="Base_Column_List" />
     from sys_menu
   </select>
-  <select id="selectMenuList"  >
+  <select id="selectMenuList"  resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List_2" />
     from sys_menu
