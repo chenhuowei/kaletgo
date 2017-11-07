@@ -34,4 +34,11 @@ public class IndexController {
         return mv;
     }
 
+    @RequestMapping("menu.html")
+    public String menu(){
+
+        return "system/menu";
+    }
+
+
 }

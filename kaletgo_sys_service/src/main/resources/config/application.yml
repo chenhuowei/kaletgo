@@ -25,5 +25,5 @@ mybatis:
 #Dubbo
 #ZooKeeper
 dubbo:
-    registry:
-        address: 120.78.172.165:2181
+  registry:
+    address: 120.78.172.165:2181

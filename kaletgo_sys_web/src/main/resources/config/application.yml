@@ -13,6 +13,8 @@ spring:
       request-context-attribute: request
       charset: UTF-8
       cache: false
+      settings:
+        template_update_delay: 0
 #日志
 logging:
   config: classpath:config/logback-spring.xml
@@ -20,5 +22,5 @@ logging:
 #Dubbo
 #ZooKeeper
 dubbo:
-    registry:
-        address: 120.78.172.165:2181
+  registry:
+    address:  120.78.172.165:2181
