@@ -30,10 +30,10 @@ public class MenuController {
     private MenuFacade menuFacade;
 
 
-    @RequestMapping(value="/navbar.html")
+    @RequestMapping(value="/navbar")
     @ResponseBody
     @ApiOperation(value = "请求导航菜单json数据")
-    public List<Menu> selectMenuList(){
+    public Map<String,Object> selectMenuList(){
 
         List<Menu> list = menuFacade.selectMenuList();
         List<Menu> list2 = new ArrayList<Menu>();
@@ -52,7 +52,11 @@ public class MenuController {
 
         }
 
-        return list2;
+        Map<String,Object> json = new HashMap<>();
+        json.put("status",200);
+        json.put("data",list2);
+
+        return json;
 
     }
 
