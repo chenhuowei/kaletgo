@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Jquery-treegrid basic example</title>
 
-    <link rel="stylesheet" href="${request.contextPath}/plugins/treegrid/jquery.treegrid.css">
+    <link rel="stylesheet" href="${request.contextPath}/plugins/treegrid/css/jquery.treegrid.css">
+    <link rel="stylesheet" href="${request.contextPath}/layui/css/layui.css">
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </head>
 <body>
 
-<table class="tree">
+<table class="tree layui-table">
     <tr class="treegrid-1">
         <td>Root node</td><td>Additional info</td>
     </tr>
@@ -27,11 +28,13 @@
     </tr>
 </table>
 
-<script type="text/javascript" src="${request.contextPath}/plugins/treegrid/jquery.treegrid.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/plugins/treegrid/js/jquery.treegrid.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/layui/js/layui/layui.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.tree').treegrid();
     });
+    //layui.use('table');
 </script>
 </body>
 </html>

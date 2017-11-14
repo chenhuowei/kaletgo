@@ -33,7 +33,7 @@ public class MenuController {
     @RequestMapping(value="/navbar")
     @ResponseBody
     @ApiOperation(value = "请求导航菜单json数据")
-    public Map<String,Object> selectMenuList(){
+    public List selectMenuList(){
 
         List<Menu> list = menuFacade.selectMenuList();
         List<Menu> list2 = new ArrayList<Menu>();
@@ -52,11 +52,7 @@ public class MenuController {
 
         }
 
-        Map<String,Object> json = new HashMap<>();
-        json.put("status",200);
-        json.put("data",list2);
-
-        return json;
+        return list2;
 
     }
 
@@ -64,13 +60,14 @@ public class MenuController {
     @ResponseBody
     @ApiOperation(value = "请求菜单列表数据")
     public Map list(){
-
         List<Menu> list = menuFacade.selectByPage();
         Map<String,Object> json = new HashMap<>();
-        json.put("rows",list);
-        json.put("total",100);
-        json.put("message","ok");
-        json.put("flag",true);
+        Map<String,Object> json2 = new HashMap<>();
+        json2.put("list",list);
+        json.put("total",9);
+        json.put("pages",8);
+        json.put("status",200);
+        json.put("data",json2);
         return json;
 
     }
