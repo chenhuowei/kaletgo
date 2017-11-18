@@ -5,7 +5,6 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
-    <link href="${request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="${request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="${request.contextPath}/treegrid/jquery.treegrid.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="${request.contextPath}/jqadmin/js/layui/css/layui.css" media="all">
@@ -21,12 +20,12 @@
     </style>
 </head>
 
-<body>
+<body style="height: 100%">
 <button class="layui-btn menu_form_open">添加</button>
-<table id="menu_table" ></table>
+<table id="menu_table" class="layui-table"></table>
 <!-- 模态框（Modal） -->
 
-
+<div id="menu_page" ></div>
 
 <script src="${request.contextPath}/js/jquery.min.js"></script>
 <script src="${request.contextPath}/treegrid/jquery.treegrid.min.js"></script>
@@ -88,67 +87,56 @@
 
 </script>
 <script>
-    layui.use(['layer','form'], function(){ //独立版的layer无需执行这一句
-        var layer = layui.layer,form = layui.form; //独立版的layer无需执行这一句
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,content: function(value){
-                layedit.sync(editIndex);
-            }
-        });
-
-        //监听指定开关
-        form.on('switch(switchTest)', function(data){
-            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-                offset: '6px'
-            });
-            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        });
-
-        //监听提交
-        form.on('submit(demo1)', function(data){
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
-            return false;
-        });
+    layui.use(['layer','form','laypage'], function(){ //独立版的layer无需执行这一句
+        var layer = layui.layer,
+        laypage = layui.laypage,
+        form = layui.form; //独立版的layer无需执行这一句
+        laypage.render({
+            elem: 'menu_page' //注意，这里的 test1 是 ID，不用加 # 号
+            ,count: 50 //数据总数，从服务端得到
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj){
+            console.log(obj)
+          }
+          });
+        
+        // menu add,update,delete action 
+        
         $('.menu_form_open').on('click', function(){
 
             layer.open(
                 {
-                    maxWidth : '1300px',
-                    area: 'auto',
+                   // maxWidth : '1300px',
+                    area: '[1200,1200]',
                     type: 1,
+                    maxmin: true,
+                    btn: ['关闭'],
+                    btnAlign: 'c',
                     content: $('#menu_form')
                 }
             );
 
         });
+        
 
-        $('.icon-add').on('click', function(){
+        $('.menu-edit').on('click', function(){
 
-            layer.open(
-                {
-                    area: ['800px', '600px'],
-                    type: 1,
-                    content: $('#icon_select')
-                }
-            );
+           alert($(this).val());
 
         });
+        $('.menu-delete').on('click', function(){
+
+            alert($(this).val());
+
+         });
 
 
     });
 </script>
-</body>
-<div id="menu_form" hidden>
 
-    <form class="layui-form">
+<div id="menu_form" hidden >
+
+    <form class="layui-form layui-form-panel"  style="">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">验证手机</label>
@@ -223,5 +211,5 @@
 
 
 </div>
-
+</body>
 </html>

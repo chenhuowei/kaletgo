@@ -40,8 +40,8 @@
                         tr.append(td);
                     });
                     tr.append('<td>' +
-                        '<button type="button" onclick="update('+item.id+')" class="btn btn-primary">更新</button>&nbsp;&nbsp;'+
-                        '<button type="button" onclick="delete('+item.id+')" class="btn btn-danger">删除</button>'+
+                        '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-primary menu-edit">更新</button>&nbsp;&nbsp;'+
+                        '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-danger menu-delete">删除</button>'+
                         '</td>');
                     tbody.append(tr);
                     target.getChildNodes(data, item, nowParentIndex, tbody)
@@ -63,7 +63,7 @@
                 data: options.ajaxParams,
                 dataType: "JSON",
                 success: function (data, textStatus, jqXHR) {
-                    debugger;
+                   // debugger;
                     //构造表头
                     var thr = $('<tr></tr>');
                     $.each(options.columns, function (i, item) {
@@ -93,8 +93,8 @@
                             //tr.append("<td>test</td>");
                         });
                         tr.append('<td>' +
-                            '<button type="button" onclick="update('+item.id+')" class="btn btn-primary">更新</button>&nbsp;&nbsp;'+
-                            '<button type="button" onclick="delete('+item.id+')" class="btn btn-danger">删除</button>'+
+                            '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-primary menu-edit">更新</button>&nbsp;&nbsp;'+
+                            '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-danger menu-delete">删除</button>'+
                             '</td>');
                         tbody.append(tr);
                         target.getChildNodes(data, item, (j + i), tbody);
@@ -135,8 +135,8 @@
         striped: false,   //是否各行渐变色
         bordered: false,  //是否显示边框
         columns: [],
-        expanderExpandedClass: 'glyphicon glyphicon-chevron-down',//展开的按钮的图标
-        expanderCollapsedClass: 'glyphicon glyphicon-chevron-right'//缩起的按钮的图标
+        expanderExpandedClass: 'fa fa-chevron-down',//展开的按钮的图标
+        expanderCollapsedClass: 'fa fa-chevron-right'//缩起的按钮的图标
 
     };
 })(jQuery);
