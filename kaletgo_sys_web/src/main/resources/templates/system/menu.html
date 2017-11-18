@@ -1,40 +1,227 @@
-<!doctype html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Jquery-treegrid basic example</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+    <link href="${request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="${request.contextPath}/treegrid/jquery.treegrid.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="${request.contextPath}/jqadmin/js/layui/css/layui.css" media="all">
+    <style>
+        .site-doc-icon{margin-bottom: 50px; font-size: 0;}
+        .site-doc-icon li{display: inline-block; vertical-align: middle; width: 127px; line-height: 25px; padding: 20px 0; margin-right: -1px; margin-bottom: -1px; border: 1px solid #e2e2e2; font-size: 14px; text-align: center; color: #666; transition: all .3s; -webkit-transition: all .3s;}
+        .site-doc-icon li .layui-icon{display: inline-block; font-size: 36px;}
 
-    <link rel="stylesheet" href="${request.contextPath}/plugins/treegrid/css/jquery.treegrid.css">
-    <link rel="stylesheet" href="${request.contextPath}/layui/css/layui.css">
+        .site-doc-icon li .fontclass{display: none;}
+        .site-doc-icon li .name{color: #c2c2c2;}
+        .site-doc-icon li:hover{background-color: #f2f2f2; color: #000;}
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+    </style>
 </head>
+
 <body>
+<button class="layui-btn menu_form_open">添加</button>
+<table id="menu_table" ></table>
+<!-- 模态框（Modal） -->
 
-<table class="tree layui-table">
-    <tr class="treegrid-1">
-        <td>Root node</td><td>Additional info</td>
-    </tr>
-    <tr class="treegrid-2 treegrid-parent-1">
-        <td>Node 1-1</td><td>Additional info</td>
-    </tr>
-    <tr class="treegrid-3 treegrid-parent-1">
-        <td>Node 1-2</td><td>Additional info</td>
-    </tr>
-    <tr class="treegrid-4 treegrid-parent-3">
-        <td>Node 1-2-1</td><td>Additional info</td>
-    </tr>
-</table>
 
-<script type="text/javascript" src="${request.contextPath}/plugins/treegrid/js/jquery.treegrid.min.js"></script>
-<script type="text/javascript" src="${request.contextPath}/layui/js/layui/layui.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.tree').treegrid();
+
+<script src="${request.contextPath}/js/jquery.min.js"></script>
+<script src="${request.contextPath}/treegrid/jquery.treegrid.min.js"></script>
+<script src="${request.contextPath}/treegrid/jquery.treegrid.extension.js"></script>
+<script type="text/javascript" src="${request.contextPath}/jqadmin/js/layui/layui.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#menu_table').treegridData({
+            id: 'id',
+            parentColumn: 'parentId',
+            type: "GET", //请求数据的ajax类型
+            url: '${request.contextPath}/sys/menu/list',   //请求数据的ajax的url
+            ajaxParams: {}, //请求数据的ajax的data属性
+            expandColumn: 'title',//在哪一列上面显示展开按钮
+            striped: true,   //是否各行渐变色
+            bordered: true,  //是否显示边框
+            columns: [
+
+                {
+                    title: '名称',
+                    field: 'title'
+                },
+                {
+                    title: '地址',
+                    field: 'url'
+                },
+                {
+                    title: '类型',
+                    field: 'type'
+                },
+                {
+                    title: '图标',
+                    field: 'icon'
+                },
+                {
+                    title: '状态',
+                    field: 'status'
+                },
+
+            ]
+        });
     });
-    //layui.use('table');
+    function del(id){
+        alert(id);
+    }
+    function update(id){
+        alert(id);
+    }
+
+    function getContent(type,size){
+        var str = '<span class="label label-default">CRUD</span>';
+        if (type==0){
+            str = '<span class="label label-warning">目录</span>';
+        }else if (type == 1){
+            str = '<span class="label label-info">菜单</span>';
+        }
+        return str;
+    }
+
+</script>
+<script>
+    layui.use(['layer','form'], function(){ //独立版的layer无需执行这一句
+        var layer = layui.layer,form = layui.form; //独立版的layer无需执行这一句
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+        $('.menu_form_open').on('click', function(){
+
+            layer.open(
+                {
+                    maxWidth : '1300px',
+                    area: 'auto',
+                    type: 1,
+                    content: $('#menu_form')
+                }
+            );
+
+        });
+
+        $('.icon-add').on('click', function(){
+
+            layer.open(
+                {
+                    area: ['800px', '600px'],
+                    type: 1,
+                    content: $('#icon_select')
+                }
+            );
+
+        });
+
+
+    });
 </script>
 </body>
+<div id="menu_form" hidden>
+
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">验证邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">验证手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">验证邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">图标</label>
+            <div class="layui-input-block">
+                <input type="text" name="icon" lay-verify="required" placeholder="请输入icon标识符" autocomplete="off" class="layui-input">
+                <div class="layui-form-mid layui-word-aux">如何选择?<a style="color: red" href="http://fontawesome.io/icons/" target="_blank">点我</a></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">复选框</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="like[write]" title="写作">
+                <input type="checkbox" name="like[read]" title="阅读" checked>
+                <input type="checkbox" name="like[dai]" title="发呆">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开关</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="男" title="男">
+                <input type="radio" name="sex" value="女" title="女" checked>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">文本域</label>
+            <div class="layui-input-block">
+                <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>
+
 </html>

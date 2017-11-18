@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author: chenhuowei
@@ -59,16 +57,10 @@ public class MenuController {
     @RequestMapping(value="/list")
     @ResponseBody
     @ApiOperation(value = "请求菜单列表数据")
-    public Map list(){
+    public List list(){
         List<Menu> list = menuFacade.selectByPage();
-        Map<String,Object> json = new HashMap<>();
-        Map<String,Object> json2 = new HashMap<>();
-        json2.put("list",list);
-        json.put("total",9);
-        json.put("pages",8);
-        json.put("status",200);
-        json.put("data",json2);
-        return json;
+
+        return list;
 
     }
 
