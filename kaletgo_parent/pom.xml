@@ -21,6 +21,7 @@
         <swagger.version>2.7.0</swagger.version>
         <fastjson.version>1.2.40</fastjson.version>
         <freemarker.version>2.3.27-incubating</freemarker.version>
+        <pagehelper.versio>5.1.2</pagehelper.versio>
     </properties>
 
     <dependencyManagement>
@@ -139,6 +140,13 @@
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
             </dependency>
+            
+           <dependency>
+			    <groupId>com.github.pagehelper</groupId>
+			    <artifactId>pagehelper</artifactId>
+			    <version>${pagehelper.version}</version>
+			</dependency>
+            
         </dependencies>
     </dependencyManagement>
     <build>
