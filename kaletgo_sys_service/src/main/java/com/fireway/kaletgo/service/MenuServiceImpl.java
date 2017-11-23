@@ -4,6 +4,7 @@ import com.fireway.kaletgo.dao.MenuMapper;
 import com.fireway.kaletgo.facade.MenuFacade;
 import com.fireway.kaletgo.model.Menu;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,8 +32,13 @@ public class MenuServiceImpl implements MenuFacade{
      * @author chenhuowei
      */
     @Override
+    @Transactional
     public boolean save(Menu obj) {
-        return false;
+        int result = menuMapper.insert(obj);
+        if (result>0) {
+        	return true;
+        }
+    	return false;
     }
 
     /**
@@ -43,8 +49,13 @@ public class MenuServiceImpl implements MenuFacade{
      * @author chenhuowei
      */
     @Override
+    @Transactional
     public boolean saveSelective(Menu obj) {
-        return false;
+        int result = menuMapper.insertSelective(obj);
+        if (result>0) {
+        	return true;
+        }
+    	return false;
     }
 
     /**
@@ -55,7 +66,12 @@ public class MenuServiceImpl implements MenuFacade{
      * @author chenhuowei
      */
     @Override
+    @Transactional
     public boolean deleteById(long id) {
+    	int result = menuMapper.deleteByPrimaryKey(id);
+    	if (result > 0) {
+    		return true;
+    	}
         return false;
     }
 
@@ -67,8 +83,17 @@ public class MenuServiceImpl implements MenuFacade{
      * @author chenhuowei
      */
     @Override
+    @Transactional
     public boolean updateById(Menu obj) {
-        return false;
+        
+    	int result = menuMapper.updateByPrimaryKey(obj);
+    	
+    	if (result > 0) {
+    		return true;
+    	}
+    	
+    	
+    	return false;
     }
 
     /**
@@ -79,8 +104,15 @@ public class MenuServiceImpl implements MenuFacade{
      * @author chenhuowei
      */
     @Override
+    @Transactional
     public boolean updateBySelective(Menu obj) {
-        return false;
+        
+    	int result = menuMapper.updateByPrimaryKeySelective(obj);
+    	if (result > 0) {
+        	return true;
+        }
+    	
+    	return false;
     }
 
     /**
@@ -92,7 +124,7 @@ public class MenuServiceImpl implements MenuFacade{
      */
     @Override
     public Menu get(long id) {
-        return null;
+        return menuMapper.selectByPrimaryKey(id);
     }
 
     /**
@@ -103,6 +135,7 @@ public class MenuServiceImpl implements MenuFacade{
      */
     @Override
     public List<Menu> list() {
+    	
         return null;
     }
 
