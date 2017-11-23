@@ -18,7 +18,7 @@ public class IndexController {
     @Resource
     private MenuFacade menuFacade;
 
-    @RequestMapping("index.html")
+    @RequestMapping("/")
     public ModelAndView index(){
 
         ModelAndView mv = new ModelAndView();

@@ -26,7 +26,7 @@ public class UserController {
     private UserFacade userFacade;
 
     @RequestMapping(value="user/get.html",method = RequestMethod.GET)
-    @ApiOperation(value="查询系统用户", notes="查询系统用户接口详细描述")
+    @ApiOperation(value="查询系统用户", notes="查询系统用户接口详细描述",httpMethod="GET")
     public String get(
             @ApiParam(required=true, name="id", value="用户唯一ID")
             Long id){

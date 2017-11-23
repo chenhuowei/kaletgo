@@ -39,10 +39,14 @@
                         }
                         tr.append(td);
                     });
+                    /**
+                     * 
                     tr.append('<td>' +
                         '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-primary menu-edit">更新</button>&nbsp;&nbsp;'+
                         '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-danger menu-delete">删除</button>'+
                         '</td>');
+                     */
+                    tr.prepend('<td><input lay-skin="primary" type="checkbox" value="'+item.id+'"></td>');
                     tbody.append(tr);
                     target.getChildNodes(data, item, nowParentIndex, tbody)
 
@@ -71,7 +75,7 @@
                         th.text(item.title);
                         thr.append(th);
                     });
-                    thr.append('<th style="padding:10px;">操作</th>');
+                    thr.prepend('<th style="padding:10px;">选项</th>');
                     var thead = $('<thead></thead>');
                     thead.append(thr);
                     target.append(thead);
@@ -82,7 +86,9 @@
                     $.each(rootNode, function (i, item) {
                         var tr = $('<tr></tr>');
                         tr.addClass('treegrid-' + (j + i));
+                       
                         $.each(options.columns, function (index, column) {
+                        	 
                             var td = $('<td></td>');
                             if (column.field == 'type'){
                                 td.html(getContent(item.type,item.children.length));
@@ -92,10 +98,14 @@
                             tr.append(td);
                             //tr.append("<td>test</td>");
                         });
+                        /**
+                         * 
                         tr.append('<td>' +
                             '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-primary menu-edit">更新</button>&nbsp;&nbsp;'+
                             '<button type="button" value="'+item.id+'" class="layui-btn layui-btn-danger menu-delete">删除</button>'+
                             '</td>');
+                         */
+                        tr.prepend('<td><input lay-skin="primary" type="checkbox" value="'+item.id+'"></td>');
                         tbody.append(tr);
                         target.getChildNodes(data, item, (j + i), tbody);
                     });
